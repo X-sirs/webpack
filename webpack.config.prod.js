@@ -47,7 +47,7 @@ var webapckConfig = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|vue)$/,
                 enforce: "pre",
                 exclude: /node_modules/,
                 loader: "eslint-loader",
@@ -57,6 +57,31 @@ var webapckConfig = {
                 }
             },
             {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                  limit: 10000
+                }
+              },
+              {
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                  limit: 10000
+                }
+              },
+              {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,   
+                loader: 'url-loader',
+                options: {
+                  limit: 10000
+                }
+              },
+             {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: ExtractTextPlugin.extract({
@@ -68,7 +93,7 @@ var webapckConfig = {
                     },
                     fallback: 'style-loader'
                 })
-            }
+             }
         ]
     },
     plugins: [

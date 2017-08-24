@@ -13,7 +13,7 @@ function getEntries(globPath) { //获取所有文件入口
     files.forEach(function(filePath) {
         let name = filePath.substr(0, filePath.lastIndexOf("/"));
         let names = name.substring(name.lastIndexOf("/") + 1, name.length);
-        entries[names] =['webpack-hot-middleware/client',path.resolve(__dirname, name)];
+        entries[names] =[path.resolve(__dirname, name),'webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080'];
     });
     return entries;
 }
@@ -31,24 +31,9 @@ var webapckConfig = {
     entry: PATHS.src,
     output: {
         path: PATHS.dist,
-        publicPath:"/",
+        publicPath:"dist",
         filename: "[name]/bundle.js", //dev-server环境不能使用chunkhash
         chunkFilename:"[name].[chunkhash].js"
-    },
-    devServer: {
-        port: 8128,
-        inline: true,
-        hot: true,
-        noInfo: false,
-        historyApiFallback: true,
-        overlay: {
-            errors: true,
-            warning: true
-        },
-        stats: {
-            cached: false,
-            colors: true
-        }
     },
     devtool: "source-map",
     performance: { //文件大小检查
@@ -61,7 +46,8 @@ var webapckConfig = {
         extensions: ['.js', '.jsx']
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.js$/,
                 enforce: "pre",
                 exclude: /node_modules/,
@@ -118,6 +104,23 @@ var webapckConfig = {
         // }),
     ],
 };
+webapckConfig.plugins.push(new webpack.LoaderOptionsPlugin({
+    options: {
+        devServer: {
+            contentBase: './dist',
+            host:"localhost",
+            port:8080, //默认8080
+            inline: true, //可以监控js变化并自动刷新浏览器
+            historyApiFallback: true,
+            hot: true,
+            noInfo: false,
+            stats: {
+                cached: false,
+                colors: true
+            }
+        }
+    }
+}));
 // for (var key in htmls) { //配置config文件生成多页面的html文件
 //     webapckConfig.plugins.push(new HtmlWebpackPlugin({
 //         filename: `${key}/index.html`,

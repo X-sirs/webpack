@@ -27,7 +27,7 @@
     },
     "scripts": {
         "test": "test",
-        "start": "gulp clean&&gulp disthtml&&webpack-dev-server  --config=./webpack.config.dev.js",
+        "start": "gulp clean&&gulp disthtml&&webpack-dev-server --config=./webpack.config.dev.js",
         "build": "webpack --env production --config webpack.config.js",
         "lintjs": "eslint src/ webpack.*.js --cache",
         "dll": "webpack --config webpack.dll.config.js"

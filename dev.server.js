@@ -3,14 +3,13 @@
     var WebpackDevServer = require('webpack-dev-server');
     var compiler = webpack(config);
     var server = new WebpackDevServer(compiler, {
-        contentBase:'dist/',
-        publicPath: "dist/",
+        publicPath: "dist",
         hot:true,
-        historyApiFallback: false,
+        inline:true,
+        historyApiFallback:false,
         compress: true,
-        headers: { "X-Custom-Header": "yes" },
         stats: { colors: true }
     });
-    server.listen(8128,"localhost", function() {
-        console.log("正在监听8128端口")
+    server.listen(8500, function() {
+        console.log("正在监听8500端口")
     });

@@ -3,6 +3,13 @@
     "version": "1.0.0",
     "description": "my test app",
     "main": "webpack.config.js",
+    "scripts": {
+        "test": "test",
+        "start": "gulp clean&&gulp disthtml&&webpack-dev-server --config=./webpack.config.dev.js",
+        "build": "webpack --env production --config webpack.config.js",
+        "lintjs": "eslint src/ webpack.*.js --cache",
+        "dll": "webpack --config webpack.dll.config.js"
+    },
     "dependencies": {
         "vue": "^2.4.1"
     },
@@ -24,13 +31,6 @@
         "webpack-dev-server": "^2.5.1",
         "webpack-hot-middleware": "^2.18.2",
         "write-file-webpack-plugin": "^4.1.0"
-    },
-    "scripts": {
-        "test": "test",
-        "start": "gulp clean&&gulp disthtml&&webpack-dev-server --config=./webpack.config.dev.js",
-        "build": "webpack --env production --config webpack.config.js",
-        "lintjs": "eslint src/ webpack.*.js --cache",
-        "dll": "webpack --config webpack.dll.config.js"
     },
     "keywords": [
         "webpack"

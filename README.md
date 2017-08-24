@@ -11,5 +11,6 @@ webpack -p    //压缩混淆脚本
 webpack -d    //生成map映射文件，告知模块打包的详细的信息
 
 三、项目运行
-1.npm run dll     --生成manifest.json对包版本文件进行缓存（当安装新的依赖包或包版本升级时请先运行次命令）
-2.npm run start   --开启开发环境下的服务,打包，编译等工作
+1.npm install     --安装下载相关依赖包
+2.npm run dll     --生成manifest.json对包版本文件进行缓存（当安装新的依赖包或包版本升级时请先运行次命令）
+3.npm run start   --开启开发环境下的服务,打包，编译等工作

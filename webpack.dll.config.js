@@ -2,7 +2,10 @@ const webpack = require('webpack');
 const path = require('path');
 module.exports = {
   entry: {
-    vendors: ['vue']
+    vendors: [
+      'vue',
+      'vue-router'
+    ]
   },
   output: {
     filename: '[name].dll.js',
@@ -14,5 +17,5 @@ module.exports = {
       path: path.join(__dirname, './[name]-manifest.json'),
       name: '[name]_lib'
     }),
-  ],
+  ]
 }

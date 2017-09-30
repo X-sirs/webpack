@@ -13,7 +13,7 @@ function getEntries(globPath) { //获取所有文件入口
     files.forEach(function(filePath) {
         let name = filePath.substr(0, filePath.lastIndexOf("/"));
         let names = name.substring(name.lastIndexOf("/") + 1, name.length);
-        entries[names] =[path.resolve(__dirname, name),'webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080'];
+        entries[names] =[path.resolve(__dirname, name),'webpack/hot/dev-server','webpack-dev-server/client?http://localhost'];
     });
     return entries;
 }
@@ -32,8 +32,8 @@ var webapckConfig = {
     output: {
         path: PATHS.dist,
         publicPath:"dist",
-        filename: "[name]/bundle.js", //dev-server环境不能使用chunkhash
-        chunkFilename:"[name].[chunkhash].js"
+        filename: "[name]/[name]-bundle.js", //dev-server环境不能使用chunkhash
+        chunkFilename:"[name]/[chunkhash].js"
     },
     devtool: "source-map",
     performance: { //文件大小检查
@@ -99,7 +99,7 @@ var webapckConfig = {
     },
     plugins: [
         new ExtractTextPlugin({ //抽离css文件
-            filename: '[name]/style/index.css?[contenthash]',
+            filename: '[name]/style/[name].css?version=[contenthash]',
             ignoreOrder: true
         }),
         new webpack.DllReferencePlugin({ //分离第三方库

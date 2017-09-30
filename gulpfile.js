@@ -9,4 +9,4 @@ gulp.task("clean",function(cb){
 });
 gulp.task("disthtml",function(){
   gulphtmldev()
-}) ;
+});

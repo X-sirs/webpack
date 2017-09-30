@@ -64,14 +64,16 @@ var webapckConfig = {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
-                  limit: 10000
+                    limit: 512,
+                    name: 'assets/imgage/[name].[hash:8].[ext]'
                 }
               },
               {
                 test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
-                  limit: 10000
+                    limit: 100000,
+                    name: 'assets/audio/[name].[hash:8].[ext]'
                 }
               },
               {

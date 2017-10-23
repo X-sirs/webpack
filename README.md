@@ -1,6 +1,6 @@
 #   webpack+gulp项目工程化
 一、原理
-webpack+gulp就是讲webpack的输出目录作为gulp的入口文件在进行处理，利用webpack和gulp进行功能的互补
+webpack+gulp就是webpack的输出目录作为gulp的入口文件在进行处理，利用webpack和gulp进行功能的互补
 
 二、webpack篇
 1.webpack常见命令

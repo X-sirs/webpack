@@ -13,7 +13,7 @@ function getEntries(globPath) { //获取所有文件入口
     files.forEach(function(filePath) {
         let name = filePath.substr(0, filePath.lastIndexOf("/"));
         let names = name.substring(name.lastIndexOf("/") + 1, name.length);
-        entries[names] =[path.resolve(__dirname, name),'webpack/hot/dev-server','webpack-dev-server/client?http://localhost'];
+        entries[names] =[path.resolve(__dirname, name),"webpack/hot/dev-server","webpack-dev-server/client?http://localhost",];
     });
     return entries;
 }
@@ -33,17 +33,17 @@ var webapckConfig = {
         path: PATHS.dist,
         publicPath:"dist",
         filename: "[name]/[name]-bundle.js", //dev-server环境不能使用chunkhash
-        chunkFilename:"[name]/[chunkhash].js"
+        chunkFilename:"[name]/[chunkhash].js",
     },
     devtool: "source-map",
     performance: { //文件大小检查
         hints: "warning",
         maxEntrypointSize: 400000,
-        maxAssetSize: 10000000
+        maxAssetSize: 10000000,
     },
     resolve: {
-        modules: [path.resolve(__dirname, "src"), "node_modules"],
-        extensions: ['.js', '.jsx','.vue','json']
+        modules: [path.resolve(__dirname, "src"), "node_modules",],
+        extensions: [".js", ".jsx",".vue","json",],
     },
     module: {
         rules: [
@@ -54,59 +54,59 @@ var webapckConfig = {
                 loader: "eslint-loader",
                 options: {
                     emitWarning: true,
-                    fix: true
-                }
+                    fix: true,
+                },
             },
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                loader: "vue-loader",
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                loader: 'url-loader',
+                loader: "url-loader",
                 options: {
                     limit: 512,
-                    name: 'assets/imgage/[name].[hash:8].[ext]'
-                }
+                    name: "assets/imgage/[name].[hash:8].[ext]",
+                },
               },
               {
                 test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-                loader: 'url-loader',
+                loader: "url-loader",
                 options: {
                     limit: 100000,
-                    name: 'assets/audio/[name].[hash:8].[ext]'
-                }
+                    name: "assets/audio/[name].[hash:8].[ext]",
+                },
               },
               {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,   
-                loader: 'url-loader',
+                loader: "url-loader",
                 options: {
-                  limit: 10000
-                }
+                  limit: 10000,
+                },
               },
               {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: ExtractTextPlugin.extract({
                     use: {
-                        loader: 'css-loader',
+                        loader: "css-loader",
                         options: {
-                            modules: true
-                        }
+                            modules: true,
+                        },
                     },
-                    fallback: 'style-loader'
-                })
-            }
-        ]
+                    fallback: "style-loader",
+                }),
+            },
+        ],
     },
     plugins: [
         new ExtractTextPlugin({ //抽离css文件
-            filename: '[name]/style/[name].css?version=[contenthash]',
-            ignoreOrder: true
+            filename: "[name]/style/[name].css?version=[contenthash]",
+            ignoreOrder: true,
         }),
         new webpack.DllReferencePlugin({ //分离第三方库
             context: __dirname,
-            manifest: require('./vendors-manifest.json')
+            manifest: require("./vendors-manifest.json"),
         }),
         new webpack.ProvidePlugin({
             vue: "vue",
@@ -115,7 +115,7 @@ var webapckConfig = {
         new webpack.optimize.CommonsChunkPlugin({ //提取公共模块
             name: "commons",
             filename: "assets/js/commons.js",
-            chunks:Object.keys(htmls)
+            chunks:Object.keys(htmls),
         }),
         new webpack.HotModuleReplacementPlugin(), //热更新
         new webpack.NoEmitOnErrorsPlugin(),    //编译后将错误输出
@@ -134,7 +134,7 @@ var webapckConfig = {
 webapckConfig.plugins.push(new webpack.LoaderOptionsPlugin({
     options: {
         devServer: {
-            contentBase: './dist',
+            contentBase: "./dist",
             host:"localhost",
             port:8080, //默认8080
             inline: true, //可以监控js变化并自动刷新浏览器
@@ -143,10 +143,10 @@ webapckConfig.plugins.push(new webpack.LoaderOptionsPlugin({
             noInfo: false,
             stats: {
                 cached: false,
-                colors: true
-            }
-        }
-    }
+                colors: true,
+            },
+        },
+    },
 }));
 // for (var key in htmls) { //配置config文件生成多页面的html文件
 //     webapckConfig.plugins.push(new HtmlWebpackPlugin({

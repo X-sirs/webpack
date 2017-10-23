@@ -4,9 +4,9 @@ var gulphtmldev = require("./build/gulp-webpack-dev");
 gulp.task("clean",function(cb){
   del([
     "./dist/*",
-    "!./dist/common"
+    "!./dist/common",
   ], cb);
 });
 gulp.task("disthtml",function(){
-  gulphtmldev()
+  gulphtmldev();
 });

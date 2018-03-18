@@ -13,7 +13,9 @@ module.exports = {
         "es6": true,
         "commonjs": true
     },
-
+    "plugins": [
+        "react"
+    ],
     "extends": "eslint:recommended", //继承
     "rules": { //制定规则
         // enable additional rules
@@ -21,7 +23,7 @@ module.exports = {
         "linebreak-style": ["off", "unix"],
         "quotes": ["warn", "double"],
         "semi": ["warn", "always"],
-
+        "no-unused-vars":1,
         // override default options for rules from base configurations
         "comma-dangle": ["warn", "always"],
         "no-cond-assign": ["warn", "always"],

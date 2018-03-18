@@ -3,8 +3,8 @@ const path = require("path");
 module.exports = {
   entry: {
     vendors: [
-      "vue",
-      "vue-router",
+      "react",
+      "react-router-dom"
     ],
   },
   output: {
@@ -14,7 +14,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DllPlugin({
-      path: path.join(__dirname, "./[name]-manifest.json"),
+      path: path.join(__dirname, "./[name].manifest.json"),
       name: "[name]_lib",
     }),
   ],

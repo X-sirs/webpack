@@ -9,6 +9,7 @@ export default class Datalist extends Component{
             <div>
                 <h2>react pre</h2>
                 <Header/>
+                <image src={require('./image/259304-140PFG23527.jpg')}/>
             </div>
         )
     }

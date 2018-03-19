@@ -57,7 +57,7 @@ var webapckConfig = {
         loader: "url-loader",
         options: {
           limit: 512,
-          name: "assets/imgage/[name].[hash:8].[ext]"
+          name: "assets/image/[name].[hash:8].[ext]"
         }
       },
       {

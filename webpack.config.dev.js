@@ -3,7 +3,7 @@ const path = require("path");
 //const WriteFilePlugin = require("write-file-webpack-plugin"); //生成打包后的文件,由于hmr也会产生，所以采用gulp处理
 const HtmlWebpackPlugin = require("html-webpack-plugin"); //html自动生成和导入对应的js文件到html,采用gulp处理
 const CleanWebpackPlugin = require("clean-webpack-plugin"); 
-//const ExtractTextPlugin = require("extract-text-webpack-plugin"); //抽离css文件
+const ExtractTextPlugin = require("extract-text-webpack-plugin"); //抽离css文件
 const BabiliPlugin = require("babili-webpack-plugin"); //压缩js  
 const glob = require("glob");
 
@@ -86,11 +86,11 @@ var webapckConfig = {
     ]
   },
   plugins: [
-    // new ExtractTextPlugin({
-    //   //抽离css文件
-    //   filename: "[name]/style/[name].css?version=[contenthash]",
-    //   ignoreOrder: true
-    // }),
+    new ExtractTextPlugin({
+      //抽离css文件
+      filename: "assets/css/index.[contenthash].css",
+      ignoreOrder: true
+    }),
     new webpack.DllReferencePlugin({
       //分离第三方库
       context: __dirname,

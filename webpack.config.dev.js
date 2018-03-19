@@ -28,8 +28,8 @@ var webapckConfig = {
   output: {
     path: PATHS.dist,
     publicPath: "dist",
-    filename: "[name]/[name]-bundle.js", //dev-server环境不能使用chunkhash
-    chunkFilename: "[name]/[chunkhash].js"
+    filename: "server/index.js", //dev-server环境不能使用chunkhash
+    chunkFilename: "server/[name].[chunkhash].js"
   },
   devtool: "source-map",
   performance: {
@@ -94,7 +94,7 @@ var webapckConfig = {
     new webpack.DllReferencePlugin({
       //分离第三方库
       context: __dirname,
-      manifest: require("./vendors.manifest.json")
+      manifest: require("./manifest.json")
     }),
     new webpack.ProvidePlugin({
       react: "react"

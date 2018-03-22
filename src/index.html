@@ -16,7 +16,6 @@
             var tid;
             var flexible = lib.flexible || (lib.flexible = {});
             if (metaEl) {
-                console.warn('将根据已有的meta标签来设置缩放比例');
                 var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
                 if (match) {
                     scale = parseFloat(match[1]);
@@ -131,11 +130,9 @@
 
 <body>
     <h1>main</h1>
-    <div id="main"></div>
-    <div id="box"></div>
-    <div id="text"></div>
-    <script src="../common/vendors.dll.js"></script>
-    <script src="../assets/js/commons.js"></script>
+    <div id="root"></div>
+    <script type="text/javascript" src="/common/lib.dll.js"></script>
+    <script type="text/javascript" src="/assets/js/vendor.js"></script>
     <!--BeginInjectJs-->
     <!--EndInjectJs-->
 </body>

@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import Header from '../components/header';
+import './style/main.sass';
 export default class Datalist extends Component{
     constructor(props){
         super(props);
     }
     render(){
         return(
-            <div>
-                <h2>react pre</h2>
+            <div className="main">
+                <h2 style={{color:"#55f577"}}>React Main Container</h2>
                 <Header/>
-                <img src={require('./image/259304-140PFG23527.jpg')}/>
+                <img style={{width:"100px"}} src={require('./image/259304-140PFG23527.jpg')}/>
             </div>
         )
     }

@@ -1,18 +1,21 @@
+require('babel-polyfill');
 require("babel-core/register");
-require("babel-polyfill");
+// require('babel-core/register')({
+//     presets: ['env', 'react', 'stage-0']
+// });
 const Koa = require("koa");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
+const koaBody = require("koa-bodyparser");
 const koaStatic = require("koa-static");
-const hotServer = require("./hotserver.js").default;
 const app = new Koa();
 const path = require("path");
-const handle = require('../dist/server.js');
-app.use(cookieParser());
-app.use(bodyParser.json());
-const config = require("../webpack.config.dev.js");
+const middleware = require('koa-webpack-middleware')
+const handle = require('../dist/server.js').default;
+// const handle = require('../dist/server.js');
+app.use(koaBody());
+// const hotServer = require("./hotserver.js").default;
+const config = require("../webpack.config.server.js");
 const compiler = require("webpack")(config);
-app.use(hotServer.devMiddleware(compiler, {
+app.use(middleware.devMiddleware(compiler, {
     // display no info to console (only warnings and errors) 
     noInfo: false,
  
@@ -42,13 +45,14 @@ app.use(hotServer.devMiddleware(compiler, {
         colors: true
     }
 }));
-app.use(hotServer.hotMiddleware(compiler, {
+app.use(middleware.hotMiddleware(compiler, {
   // log: console.log, 
   // path: '/__webpack_hmr', 
   // heartbeat: 10 * 1000 
-}))
-app.use("/assets", koaStatic(path.resolve(__dirname,"../dist/assets")));
-app.use(handle);
+}));
+app.use(handle)
+app.use(koaStatic(path.resolve(__dirname,"../dist/assets")));
+// app.use(handle);
 app.listen("3008", () => {
   console.log("app is running on 3008");
 });

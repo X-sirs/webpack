@@ -3,7 +3,7 @@ require("babel-polyfill");
 import React from 'react'; 
 import {renderToString} from 'react-dom/server';
 import {BrowserRouter,matchPath,StaticRouter} from 'react-router-dom'
-import routes from './src/routes';
+import routes from './src/route';
 import {createMemoryHistory} from 'history'
 function finalPage(renderContent,initialState){
     return `
@@ -140,7 +140,7 @@ function finalPage(renderContent,initialState){
         <body>
             <div id="root">${renderContent}</div>
             <script>
-                windoe.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
+                window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
             </script>
             <script src="../common/vendors.dll.js"></script>
             <script src="../assets/js/commons.js"></script>
@@ -150,21 +150,23 @@ function finalPage(renderContent,initialState){
         </html>
     `;
 };
-export default function render(ctx) {
+export default function render(ctx,next) {
     const history = createMemoryHistory();
     const promises = [];
     routes.some(route=>{
         const match = matchPath(ctx.path,route);
         if(match){
             promises.push(route.loadData(match));      
+        }else{
+            next()
         }
         return match;
     });
     Promise.all(promises).then(data=>{
         const initialContent = renderToString(<StaticRouter location={ctx.url} context={data} />);
         const initialState = null;
-        ctx.body = finalPage(initialContent, initialState);
+         return  ctx.body = finalPage(initialContent, initialState);
     },(err)=>{
-        ctx.body = "route not match"+JSON.stringify(err)
+        return ctx.body = "route not match"+JSON.stringify(err)
     })
 };

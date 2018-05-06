@@ -9,6 +9,7 @@ const glob = require("glob");
 var webapckConfig = {
   name: "SSR",
   mode:"none",
+  target: 'node',
   context: path.join(__dirname, "./"),
   entry: {
     server: ["babel-polyfill", "./index.server.js"]
@@ -38,7 +39,7 @@ var webapckConfig = {
         exclude: /node_modules/,
         loader: "babel-loader",
         query: {
-          presets: ["es2015", "react", "stage-0"]
+          presets: ["es2015", "es2015-loose", "react", "stage-0"]
         }
       },
       {
@@ -71,6 +72,17 @@ var webapckConfig = {
         options: {
           modules: true
         }
+      },
+      {
+        test: /\.sass$/,
+        exclude: /node_modules/,
+        use: [{
+                loader: "style-loader" // 将 JS 字符串生成为 style 节点
+            }, {
+                loader: "css-loader" // 将 CSS 转化成 CommonJS 模块
+            }, {
+                loader: "sass-loader" // 将 Sass 编译成 CSS
+            }]
       }
     ]
   },

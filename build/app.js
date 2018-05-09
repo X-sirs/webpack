@@ -1,16 +1,11 @@
-require('babel-polyfill');
-require("babel-core/register");
-// require('babel-core/register')({
-//     presets: ['env', 'react', 'stage-0']
-// });
+
+// require("babel-core/register");
 const Koa = require("koa");
 const koaBody = require("koa-bodyparser");
 const koaStatic = require("koa-static");
 const app = new Koa();
 const path = require("path");
-const middleware = require('koa-webpack-middleware')
-const handle = require('../dist/server.js').default;
-// const handle = require('../dist/server.js');
+const middleware = require('koa-webpack-middleware');
 app.use(koaBody());
 // const hotServer = require("./hotserver.js").default;
 const config = require("../webpack.config.server.js");
@@ -50,7 +45,8 @@ app.use(middleware.hotMiddleware(compiler, {
   // path: '/__webpack_hmr', 
   // heartbeat: 10 * 1000 
 }));
-app.use(handle)
+const index = require("./router.js");
+app.use(index.routes(), index.allowedMethods())
 app.use(koaStatic(path.resolve(__dirname,"../dist/assets")));
 // app.use(handle);
 app.listen("3008", () => {

@@ -1,10 +1,8 @@
-require("babel-core/register");
-require("babel-polyfill");
 import React from 'react'; 
 import {renderToString} from 'react-dom/server';
-import {BrowserRouter,matchPath,StaticRouter} from 'react-router-dom'
+import {matchPath,StaticRouter} from 'react-router-dom';
 import routes from './src/route';
-import {createMemoryHistory} from 'history'
+import {createMemoryHistory} from 'history';
 function finalPage(renderContent,initialState){
     return `
         <!DOCTYPE html>
@@ -142,7 +140,7 @@ function finalPage(renderContent,initialState){
             <script>
                 window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
             </script>
-            <script src="../common/vendors.dll.js"></script>
+            <script src="../common/lib.dll.js"></script>
             <script src="../assets/js/commons.js"></script>
             <!--BeginInjectJs-->
             <!--EndInjectJs-->
@@ -150,7 +148,7 @@ function finalPage(renderContent,initialState){
         </html>
     `;
 };
-export default function render(ctx,next) {
+module.exports = (ctx, next) =>{
     const history = createMemoryHistory();
     const promises = [];
     routes.some(route=>{
@@ -169,4 +167,4 @@ export default function render(ctx,next) {
     },(err)=>{
         return ctx.body = "route not match"+JSON.stringify(err)
     })
-};
+};  

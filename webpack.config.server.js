@@ -1,7 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 //const WriteFilePlugin = require("write-file-webpack-plugin"); //生成打包后的文件,由于hmr也会产生，所以采用gulp处理
-const HtmlWebpackPlugin = require("html-webpack-plugin"); //html自动生成和导入对应的js文件到html,采用gulp处理
+//const HtmlWebpackPlugin = require("html-webpack-plugin"); //html自动生成和导入对应的js文件到html,采用gulp处理
 const CleanWebpackPlugin = require("clean-webpack-plugin"); 
 //const ExtractTextPlugin = require("extract-text-webpack-plugin"); //抽离css文件
 const BabiliPlugin = require("babili-webpack-plugin"); //压缩js  
@@ -17,10 +17,10 @@ var webapckConfig = {
   output: {
     path: path.resolve(__dirname, "./dist"),
     publicPath: "/",
-    filename: "server.js", //dev-server环境不能使用chunkhash
-    chunkFilename: "server/[name].[chunkhash].server.js"
+    filename: "server/server.js", //dev-server环境不能使用chunkhash
+    chunkFilename: "server/[name].[chunkhash].server.js",
+    libraryTarget: 'commonjs2'
   },
-  devtool: "source-map",
   performance: {
     //文件大小检查
     hints: "warning",
@@ -39,7 +39,14 @@ var webapckConfig = {
         exclude: /node_modules/,
         loader: "babel-loader",
         query: {
-          presets: ["es2015", "es2015-loose", "react", "stage-0"]
+          presets: ["es2015",["env", {
+              "targets": {
+                "node": "current"
+              }
+            }],
+            "react",
+            "stage-0"
+          ]
         }
       },
       {
@@ -117,12 +124,12 @@ var webapckConfig = {
     //     force: true,
     //     useHashIndex: false,
     // })
-    new CleanWebpackPlugin(["server"], {
+    new CleanWebpackPlugin([], {
       //清除文件夹
       root: path.resolve(__dirname, "./dist"),
       verbose: true,
       dry: false,
-      exclude: [path.resolve(__dirname, "./dist/common")]
+      exclude: [path.resolve(__dirname, "./dist/common"), path.resolve(__dirname, "./dist/server")]
     })
   ],
   optimization: {

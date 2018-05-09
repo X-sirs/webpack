@@ -30,7 +30,6 @@ var webapckConfig = {
     filename: "index.[hash].js", //dev-server环境不能使用chunkhash
     chunkFilename: "[name].[chunkhash].js"
   },
-  devtool: "source-map",
   devServer: {
     contentBase: "dist",
     hot: true,

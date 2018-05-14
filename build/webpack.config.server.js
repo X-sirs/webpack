@@ -1,4 +1,6 @@
 const webpack = require("webpack");
+const merge = require("webpack-merge");
+const baseConfig = require("./webpack.config.base");
 const path = require("path");
 //const WriteFilePlugin = require("write-file-webpack-plugin"); //生成打包后的文件,由于hmr也会产生，所以采用gulp处理
 //const HtmlWebpackPlugin = require("html-webpack-plugin"); //html自动生成和导入对应的js文件到html,采用gulp处理
@@ -6,6 +8,22 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 //const ExtractTextPlugin = require("extract-text-webpack-plugin"); //抽离css文件
 const BabiliPlugin = require("babili-webpack-plugin"); //压缩js  
 const glob = require("glob");
+// module.exports = merge(baseConfig,{
+//     name: "SSR",
+//     mode: "none",
+//     target: 'node',
+//     context: path.join(__dirname, "./"),
+//     entry: {
+//       server: ["babel-polyfill", "./index.server.js"]
+//     },
+//     output: {
+//       path: path.resolve(__dirname, "./dist"),
+//       publicPath: "/",
+//       filename: "server/server.js", //dev-server环境不能使用chunkhash
+//       chunkFilename: "server/[name].[chunkhash].server.js",
+//       libraryTarget: 'commonjs2'
+//     },
+// })
 var webapckConfig = {
   name: "SSR",
   mode:"none",
@@ -85,11 +103,11 @@ var webapckConfig = {
         test: /\.sass$/,
         exclude: /node_modules/,
         use: [{
-                loader: "style-loader" // 将 JS 字符串生成为 style 节点
-            }, {
                 loader: "css-loader" // 将 CSS 转化成 CommonJS 模块
             }, {
                 loader: "sass-loader" // 将 Sass 编译成 CSS
+            }, {
+                loader: "style-loader" // 将 JS 字符串生成为 style 节点
             }]
       }
     ]

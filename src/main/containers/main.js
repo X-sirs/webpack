@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from '../components/header';
-import './style/main';
+// import './style/main';
 export default class Datalist extends Component{
     constructor(props){
         super(props);

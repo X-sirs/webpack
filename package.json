@@ -14,7 +14,7 @@
   },
   "betterScripts": {
     "build-dev": {
-      "command": "node ./build/start.js",
+      "command": "gulp clean && webpack --colors --progress --config ./build/webpack.config.dev.js",
       "env": {
         "NODE_ENV": "development"
       }

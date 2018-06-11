@@ -8,7 +8,7 @@ const path = require("path");
 const middleware = require('koa-webpack-middleware');
 app.use(koaBody());
 // const hotServer = require("./hotserver.js").default;
-const config = require("../webpack.config.server.js");
+const config = require("./webpack.config.dev.js");
 const compiler = require("webpack")(config);
 app.use(middleware.devMiddleware(compiler, {
     // display no info to console (only warnings and errors) 

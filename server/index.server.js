@@ -1,9 +1,7 @@
-console.log("111111");
 import React from 'react'; 
-console.log("222222");
 import {renderToString} from 'react-dom/server';
 import {matchPath,StaticRouter} from 'react-router-dom';
-import routes from './src/route';
+import routes from '../src/route';
 import {createMemoryHistory} from 'history';
 function finalPage(renderContent,initialState){
     return `

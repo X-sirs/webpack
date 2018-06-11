@@ -30,10 +30,10 @@ var webapckConfig = {
   target: 'node',
   context: path.join(__dirname, "./"),
   entry: {
-    server: ["babel-polyfill", "./index.server.js"]
+    server: ["babel-polyfill", "../server/index.server.js"]
   },
   output: {
-    path: path.resolve(__dirname, "./dist"),
+    path: path.resolve(__dirname, "../dist"),
     publicPath: "/",
     filename: "server/server.js", //dev-server环境不能使用chunkhash
     chunkFilename: "server/[name].[chunkhash].server.js",
@@ -121,7 +121,7 @@ var webapckConfig = {
     new webpack.DllReferencePlugin({
       //分离第三方库
       context: __dirname,
-      manifest: require("./manifest.json")
+      manifest: require("../manifest.json")
     }),
     new webpack.ProvidePlugin({
       react: "react"

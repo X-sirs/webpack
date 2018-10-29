@@ -1,7 +1,8 @@
 const webpack = require("webpack");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require("path");
 module.exports = {
-  mode: "none",
+  mode: "production",
   entry: {
     lib: ["react", "react-dom", "react-router-dom"]
   },
@@ -16,5 +17,14 @@ module.exports = {
       name: "[name]",
       context: __dirname
     })
-  ]
+  ],
+  optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                uglifyOptions: {
+                    compress: false
+                }
+            })
+        ]
+  }
 };

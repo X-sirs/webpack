@@ -57,7 +57,7 @@ const webapckConfig = {
       {
         test: /\.(sass|scss)?$/,
         exclude: /node_modules/,
-        use:['style-loader','css-loader','sass-loader'],
+        use:['css-loader','sass-loader'],
       },
       {
         test: /\.(csv|tsv)$/, 

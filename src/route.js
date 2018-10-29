@@ -1,15 +1,12 @@
 import React from "react";
 import { BrowserRouter,Route,Switch } from "react-router-dom";
-import Main from "./main/containers/main.js";
-const HomePage = () => <div>Home Page</div>;
-const UsersPage = () => <div>User Page</div>;
-
+const MainPage = (nextState, cb) => {
+  require.ensure([], (require) => { cb(null, require("./main/containers/main").default); }, 'MainPage')
+};
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/home" exact component={HomePage} />
-      <Route path="/user" component={UsersPage} />
-      <Route path="/main" component={Main} />
+      <Route path="/main" getComponent={MainPage} />
     </Switch>
   </BrowserRouter>
 );

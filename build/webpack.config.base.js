@@ -1,8 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const BabiliPlugin = require("babili-webpack-plugin"); //压缩js  
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const webapckConfig = {
   context: path.join(__dirname, "../src"),//项目入口上下文
   performance: {
@@ -78,7 +77,6 @@ const webapckConfig = {
     new webpack.ProvidePlugin({
       react: "react"
     }),
-    new BabiliPlugin(), //压缩js文件--(会压缩require，对require.ensure有影响)
     new webpack.NoEmitOnErrorsPlugin(), //编译后将错误输出
     new ProgressBarPlugin({ summary: false })
   ],
@@ -109,6 +107,13 @@ const webapckConfig = {
         }
       }
     },
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: false
+        }
+      })
+    ],
     runtimeChunk: false
   }
 };

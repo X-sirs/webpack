@@ -11,7 +11,7 @@ const devConfig = merge(baseConfig,{
    output: {
      path: path.resolve(__dirname, "../dist"),
      publicPath: "/",
-     filename: "[name]/js/build-[hash].js", //dev-server环境不能使用chunkhash
+     filename: "[name]/js/bundle-[hash].js", //dev-server环境不能使用chunkhash
    },
    module:{
      rules:[

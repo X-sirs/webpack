@@ -18,12 +18,12 @@ const prodConfig = merge(baseConfig, {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                use: [MiniExtractCss.loader, "style-loader", "css-loader", 'postcss-loader']
+                use: ["style-loader", "css-loader", 'postcss-loader']
             },
             {
                 test: /\.(sass|scss)?$/,
                 exclude: /node_modules/,
-                use: [MiniExtractCss.loader, "css-loader", "sass-loader", 'postcss-loader']
+                use: ["style-loader","css-loader", "sass-loader", 'postcss-loader']
             }
         ]
     },

@@ -12,6 +12,10 @@
     "lintjs": "eslint src/ webpack.*.js --cache",
     "dll": "webpack --config webpack.dll.config.js"
   },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "betterScripts": {
     "build-dev": {
       "command": "gulp clean && webpack-dev-server  --config ./build/webpack.config.dev.js",

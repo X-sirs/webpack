@@ -2,8 +2,8 @@
 // require("babel-polyfill");
 import React from "react";
 import ReactDOM from "react-dom";
-import App from './route.js';
+import AppRouter from "./route.js";
 ReactDOM.render(
-     <App/>,
-     document.getElementById("root")
+    <AppRouter/>,
+    document.getElementById("root")
 );

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from '../components/header';
-import './style/main';
+import './style/main.scss';
 export default class MainPage extends Component{
     constructor(props){
         super(props);

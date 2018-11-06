@@ -32,7 +32,7 @@ const devConfig = merge(baseConfig, {
       {
         test: /\.(sass|scss)?$/,
         exclude: /node_modules/,
-        use: [MiniExtractCss.loader, "css-loader", "sass-loader",'postcss-loader']
+        use: [MiniExtractCss.loader, "css-loader", "sass-loader", 'postcss-loader']
       }
     ]
   },

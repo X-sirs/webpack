@@ -5,6 +5,7 @@
   "scripts": {
     "test": "test",
     "dev": "better-npm-run build-dev",
+    "build":"better-npm-run build-production",
     "server-dev": "npm-run-all --sequential build-dev start-server",
     "build-dev": "better-npm-run start-dev",
     "start-server": "better-npm-run build-server",
@@ -21,6 +22,12 @@
       "command": "gulp clean && webpack-dev-server  --config ./build/webpack.config.dev.js",
       "env": {
         "NODE_ENV": "development"
+      }
+    },
+    "build-production":{
+      "command": "gulp clean && webpack --colors --progress  --config ./build/webpack.config.prod.js",
+      "env": {
+        "NODE_ENV": "production"
       }
     },
     "start-dev": {

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component,lazy } from "react";
 import Header from '../components/header';
 import './style/main.scss';
 export default class MainPage extends Component{

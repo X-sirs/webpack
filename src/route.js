@@ -1,9 +1,13 @@
-import React, { Component} from "react";
+import React, { Component,lazy,Suspense} from "react";
 import { BrowserRouter,Route,Switch } from "react-router-dom";
-// const Home = (nextState, cb) => {
-//   require.ensure([], (require) => { cb(null, require("./home/containers/index.js").default);console.log("import homepage") }, 'home')
-// };
-import Home from './home/containers/index';
+const Home = lazy(()=>import('./home/containers/index'));
+const MyComponent = ()=>(
+  <div>
+      <Suspense fallback={<div style={{textAlign:"center"}}>...loading</div>}>
+        <Home/>
+      </Suspense>
+  </div>
+)
 export default class AppRouter extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +16,7 @@ export default class AppRouter extends Component {
     return (
       <BrowserRouter basename="/">
         <Switch>
-          <Route path="/home"  render={()=><Home/>} />
+          <Route path="/home" render={(props) => <MyComponent {...props}/>} />
         </Switch>
       </BrowserRouter>
     )

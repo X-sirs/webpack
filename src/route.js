@@ -1,13 +1,6 @@
-import React, { Component,lazy,Suspense} from "react";
+import React, { Component} from "react";
 import { BrowserRouter,Route,Switch } from "react-router-dom";
-const Home = lazy(()=>import('./home/containers/index'));
-const LoadPage = (MyComponent,props)=>(
-  <div>
-      <Suspense fallback={<div style={{textAlign:"center"}}>...loading</div>}>
-        <MyComponent {...props}/>
-      </Suspense>
-  </div>
-)
+import Home from './home/containers/index';
 export default class AppRouter extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +9,7 @@ export default class AppRouter extends Component {
     return (
       <BrowserRouter basename="/">
         <Switch>
-          <Route path="/home" render={(props) => LoadPage(Home,props)} />
+          <Route path="/home" render={(props) => {return <Home/>}}/>
         </Switch>
       </BrowserRouter>
     )
